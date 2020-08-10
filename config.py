@@ -3,7 +3,7 @@
 version 2.0
 @author: Sergio Moreschini, Francesco Lomio
 
-This is a config file: it means all the paramenter that can be changed are stored and configured in this .py file
+This is a config file: it means all the parameter that can be changed are stored and configured in this .py file
 """
 ################################################## General parameters ##################################################
 # Address of the file to import to read the data
