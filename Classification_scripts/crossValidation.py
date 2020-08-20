@@ -13,7 +13,7 @@ from multiprocessing import Manager
 from scipy import interp
 from sklearn.metrics import roc_curve, auc, roc_auc_score
 
-from utils import split_group_cv, make_sure_folder_exists
+from Classification_scripts.utils import split_group_cv, make_sure_folder_exists
 matplotlib.use("PDF")
 num_cores = multiprocessing.cpu_count()
 ########################################################################################################################

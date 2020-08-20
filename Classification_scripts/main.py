@@ -23,9 +23,9 @@ from sklearn.metrics import auc
 import time
 import pickle
 
-from utils import create_groups_cv
-from crossValidation import cross_validate_and_plot
-import config
+from Classification_scripts.utils import create_groups_cv
+from Classification_scripts.crossValidation import cross_validate_and_plot
+from Classification_scripts import config
 
 matplotlib.use("PDF")
 ########################################################################################################################
