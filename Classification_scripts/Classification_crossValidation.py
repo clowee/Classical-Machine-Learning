@@ -16,8 +16,41 @@ from sklearn.metrics import roc_curve, auc, roc_auc_score
 from Classification_scripts.utils import split_group_cv, make_sure_folder_exists
 matplotlib.use("PDF")
 num_cores = multiprocessing.cpu_count()
+'''
+This file to be used only in case of Classification
+'''
 ########################################################################################################################
 
+def classifiers():
+    # List of classifiers to be used:
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.ensemble import GradientBoostingClassifier
+    from sklearn.ensemble import ExtraTreesClassifier
+    from sklearn.tree import DecisionTreeClassifier
+    from sklearn.ensemble import AdaBoostClassifier
+    from sklearn.ensemble import BaggingClassifier
+    from xgboost import XGBClassifier
+
+    classifiers = [(LogisticRegression(penalty=config.LRPenalty), 'LogisticRegression'),
+                   (RandomForestClassifier(n_estimators=config.RFnEstim,
+                                           n_jobs=config.nJobs,
+                                           random_state=config.randstate), "RandomForest"),
+                   (GradientBoostingClassifier(n_estimators=config.GBnEstim,
+                                               random_state=config.randstate), "GradientBoost"),
+                   (ExtraTreesClassifier(n_estimators=config.ETnEstim,
+                                         random_state=config.randstate), "ExtraTrees"),
+                   (DecisionTreeClassifier(random_state=config.randstate), "DecisionTrees"),
+                   (BaggingClassifier(n_estimators=config.BCnEstim,
+                                      n_jobs=config.nJobs,
+                                      random_state=config.randstate), "Bagging"),
+                   (AdaBoostClassifier(n_estimators=config.ABnEstim,
+                                       random_state=config.randstate), "AdaBoost"),
+                   (XGBClassifier(n_estimators=config.XGBnEstim,
+                                  n_jobs=config.nJobs,
+                                  randomstate=config.randstate), "XGBoost")
+                   ]
+    return classifiers
 
 def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
     num_folds = splits
