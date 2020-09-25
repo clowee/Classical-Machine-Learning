@@ -7,7 +7,7 @@ This is a config file: it means all the parameter that can be changed are stored
 """
 ################################################## General parameters ##################################################
 # Address of the file to import to read the data
-CSVOrigin = "./Data/TOTAL_finalDelta.csv"
+CSVOrigin = "../Data/TOTAL_finalDelta.csv"
 
 analysisType = 'Classification' #choose 'Regression' or 'Classification'
 

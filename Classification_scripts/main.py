@@ -25,7 +25,7 @@ start_time = time.time()
 
 if __name__ == "__main__":
     # Read in data and create the variable df to manipulate it
-    df = pandas.read_csv(config.CSVOrigin, nrows=100)
+    df = pandas.read_csv(config.CSVOrigin)
     df = create_groups_cv(df, config.nFolds)
 
     # create the two other columns - TO CANCEL OR MODIFY - IT IS MODEL SPECIFIC
@@ -65,7 +65,7 @@ if __name__ == "__main__":
         for clf, name in model:
             # clf, name = model[clf_to_use]
             print("Evaluating %s classifier (squid)" % name)
-            fpr, tpr = cross_validate_and_plot(clf, X, y, cols, name + "_squid", config.nFolds, df)
+            fpr, tpr = cross_validate_and_plot(clf, X, y, colX, name + "_squid", config.nFolds, df)
             squid_rocs = [name, fpr, tpr, auc(fpr, tpr)]
 
             with open('squid_rocs_%s.data' % name, 'wb') as fp:  # Pickling
@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
         for clf, name in model:
             print("Evaluating %s classifier (squid)" % name)
-            mae, r2 = cross_validate_and_plot(clf, X, y, cols, name + "_squid", splits)
+            mae, r2 = cross_validate_and_plot(clf, X, y, colX, name + "_squid", splits)
             squid_rocs = [name, mae, r2]
 
             with open('squid_changes_%s.data' % name, 'wb') as fp:  # Pickling
