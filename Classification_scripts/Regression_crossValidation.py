@@ -32,24 +32,26 @@ def regressors():
     from sklearn.tree import DecisionTreeRegressor
     from sklearn.ensemble import AdaBoostRegressor
     from sklearn.ensemble import BaggingRegressor
+    from xgboost import XGBRegressor
 
     regressors = [(LinearRegression(n_jobs=config.nJobs), 'LinearRegression'),
-                   (RandomForestRegressor(n_estimators=config.RFnEstim,
+                  (RandomForestRegressor(n_estimators=config.RFnEstim,
                                           n_jobs=config.nJobs,
                                           random_state=config.randstate), "RandomForest"),
-                   (GradientBoostingRegressor(n_estimators=config.GBnEstim,
+                  (GradientBoostingRegressor(n_estimators=config.GBnEstim,
                                               random_state=config.randstate), "GradientBoost"),
-                   (ExtraTreesRegressor(n_estimators=config.ETnEstim,
+                  (ExtraTreesRegressor(n_estimators=config.ETnEstim,
                                         random_state=config.randstate), "ExtraTrees"),
-                   (DecisionTreeRegressor(random_state=config.randstate), "DecisionTrees"),
-                   (BaggingRegressor(n_estimators=config.BCnEstim,
+                  (DecisionTreeRegressor(random_state=config.randstate), "DecisionTrees"),
+                  (BaggingRegressor(n_estimators=config.BCnEstim,
                                      n_jobs=config.nJobs,
                                      random_state=config.randstate), "Bagging"),
-                   (AdaBoostRegressor(n_estimators=config.ABnEstim,
-                                      random_state=config.randstate), "AdaBoost")
-                   # ,
-                   #            (XGBRegressor(n_estimators=config.XGBnEstim, n_jobs=config.nJobs, randomstate=config.randstate), "XGBoost")
-                   ]
+                  (AdaBoostRegressor(n_estimators=config.ABnEstim,
+                                      random_state=config.randstate), "AdaBoost"),
+                  (XGBRegressor(n_estimators=config.XGBnEstim,
+                                n_jobs=config.nJobs,
+                                randomstate=config.randstate), "XGBoost")
+                  ]
     return regressors
 
 def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
