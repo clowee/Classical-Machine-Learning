@@ -75,11 +75,11 @@ if __name__ == "__main__":
 
         for clf, name in model:
             print("Evaluating %s classifier (squid)" % name)
-            mae, r2 = cross_validate_and_plot(clf, X, y, colX, name + "_squid", splits)
-            squid_rocs = [name, mae, r2]
+            mae, r2 = cross_validate_and_plot(clf, X, y, colX, name + "_squid", config.nFolds, df)
+            squid_metrics = [name, mae, r2]
 
             with open('squid_changes_%s.data' % name, 'wb') as fp:  # Pickling
-                pickle.dump(squid_rocs, fp)
+                pickle.dump(squid_metrics, fp)
 
     # ################################################### M Prediction ###################################################
     #

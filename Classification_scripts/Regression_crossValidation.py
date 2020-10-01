@@ -52,7 +52,7 @@ def regressors():
                    ]
     return regressors
 
-def cross_validate_and_plot(clf, X, y, column_names, name, splits):
+def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
     num_folds = splits
 
     N, P = X.shape
