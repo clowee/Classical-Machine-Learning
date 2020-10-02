@@ -1,4 +1,4 @@
-name: ClassicalMLMac
+name: softqlty
 channels:
   - conda-forge
   - anaconda
