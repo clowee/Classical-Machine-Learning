@@ -25,7 +25,7 @@ randstate = 0 #define random state for models initialization
 
 # 1) Logistic Regression
 #    penalty for LR
-LRPenalty = "l2" #no L1
+LRPenalty = "l2" #no l1
 
 
 # 2) Random Forest
