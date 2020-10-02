@@ -9,7 +9,7 @@ This is a config file: it means all the parameter that can be changed are stored
 # Address of the file to import to read the data
 CSVOrigin = "../Data/TOTAL_finalDelta.csv"
 
-analysisType = 'Classification' #choose 'Regression' or 'Classification'
+analysisType = 'Regression' #choose 'Regression' or 'Classification'
 
 target = 'isInducing 0/1?' #name of target variable
 
@@ -25,7 +25,7 @@ randstate = 0 #define random state for models initialization
 
 # 1) Logistic Regression
 #    penalty for LR
-LRPenalty = "l1"
+LRPenalty = "l2" #NO l1!
 
 
 # 2) Random Forest
