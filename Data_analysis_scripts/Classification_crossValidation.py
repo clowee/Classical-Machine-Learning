@@ -1,6 +1,6 @@
 ########################################################################################################################
 import matplotlib
-import pandas
+import pandas as pd
 import numpy as np
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import matthews_corrcoef
@@ -13,8 +13,8 @@ from multiprocessing import Manager
 from scipy import interp
 from sklearn.metrics import roc_curve, auc, roc_auc_score
 
-from Classification_scripts.utils import split_group_cv, make_sure_folder_exists
-from Classification_scripts import config
+from Data_analysis_scripts.utils import split_group_cv, make_sure_folder_exists
+from Data_analysis_scripts import config
 matplotlib.use("PDF")
 num_cores = multiprocessing.cpu_count()
 '''
@@ -154,7 +154,7 @@ def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
         idx = np.argsort(importances_random)
         sorted_column_names = list(np.array(column_names)[idx])
 
-        importance_random = pandas.DataFrame({'Variables': sorted_column_names, 'Importance': importances_random[idx]})
+        importance_random = pd.DataFrame({'Variables': sorted_column_names, 'Importance': importances_random[idx]})
         target_file = "Importances_random_folds/%s-%s" % (name, count)
         make_sure_folder_exists(target_file)
         importance_random.to_csv(target_file + ".csv", columns=['Variables', 'Importance'], sep=';', index=False)
@@ -194,7 +194,7 @@ def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
         idx = np.argsort(importances_drop)
         sorted_column_names = list(np.array(column_names)[idx])
 
-        importance_drop = pandas.DataFrame({'Variables': sorted_column_names, 'Importance': importances_drop[idx]})
+        importance_drop = pd.DataFrame({'Variables': sorted_column_names, 'Importance': importances_drop[idx]})
         target_file = "Importance_drop_folds/%s-%s" % (name, count)
         make_sure_folder_exists(target_file)
         importance_drop.to_csv(target_file + ".csv", columns=['Variables', 'Importance'], sep=';', index=False)
@@ -235,7 +235,7 @@ def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
                                                                                                  np.mean(mccList),
                                                                                                  np.std(mccList)))
     # save metrics as .csv
-    metrics_tosave = pandas.DataFrame(
+    metrics_tosave = pd.DataFrame(
         {'Confusion_Matrix_TNR_mean': np.mean(tnList), 'Confusion_Matrix_TNR_std': np.std(tnList),
          'Confusion_Matrix_FNR_mean': np.mean(fnList), 'Confusion_Matrix_FNR_std': np.std(fnList),
          'Confusion_Matrix_FPR_mean': np.mean(fpList), 'Confusion_Matrix_FPR_std': np.std(fpList),
@@ -300,7 +300,7 @@ def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
     idx = np.argsort(importances_average_random)
     sorted_column_names = list(np.array(column_names)[idx])
 
-    importance_average_random = pandas.DataFrame(
+    importance_average_random = pd.DataFrame(
         {'Variables': sorted_column_names, 'Importance': importances_average_random[idx]})
     target_file = "Importances_random/values/%s" % name
     make_sure_folder_exists(target_file)
@@ -332,7 +332,7 @@ def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
     idx = np.argsort(importances_average_drop)
     sorted_column_names = list(np.array(column_names)[idx])
 
-    importance_average_drop = pandas.DataFrame(
+    importance_average_drop = pd.DataFrame(
         {'Variables': sorted_column_names, 'Importance': importances_average_drop[idx]})
     target_file = "Importances_drop/values/%s" % name
     make_sure_folder_exists(target_file)

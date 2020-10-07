@@ -7,7 +7,7 @@ version 2.0
 """
 ########################################################################################################################
 import matplotlib
-import pandas
+import pandas as pd
 import numpy as np
 
 from sklearn.metrics import auc
@@ -15,9 +15,9 @@ from sklearn.metrics import auc
 import time
 import pickle
 
-from Classification_scripts.utils import create_groups_cv
-from Classification_scripts.Classification_crossValidation import cross_validate_and_plot, classifiers
-from Classification_scripts import config
+from Data_analysis_scripts.utils import create_groups_cv
+from Data_analysis_scripts.Classification_crossValidation import cross_validate_and_plot, classifiers
+from Data_analysis_scripts import config
 
 matplotlib.use("PDF")
 ########################################################################################################################
@@ -25,7 +25,7 @@ start_time = time.time()
 
 if __name__ == "__main__":
     # Read in data and create the variable df to manipulate it
-    df = pandas.read_csv(config.CSVOrigin)
+    df = pd.read_csv(config.CSVOrigin)
     df = create_groups_cv(df, config.nFolds)
 
     # create the two other columns - TO CANCEL OR MODIFY - IT IS MODEL SPECIFIC
@@ -51,10 +51,10 @@ if __name__ == "__main__":
     y = np.array(y)
 
     if config.analysisType == 'Classification':
-        from Classification_scripts.Classification_crossValidation import cross_validate_and_plot, classifiers
+        from Data_analysis_scripts.Classification_crossValidation import cross_validate_and_plot, classifiers
         model = classifiers()
     if config.analysisType == 'Regression':
-        from Classification_scripts.Regression_crossValidation import cross_validate_and_plot, regressors
+        from Data_analysis_scripts.Regression_crossValidation import cross_validate_and_plot, regressors
         model = regressors()
 
     # # Loop over each and cross-validate

@@ -1,6 +1,6 @@
 ########################################################################################################################
 import matplotlib
-import pandas
+import pandas as pd
 import numpy as np
 
 import matplotlib.pyplot as plt
@@ -13,8 +13,8 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import r2_score
 
 
-from Classification_scripts.utils import split_group_cv, make_sure_folder_exists
-from Classification_scripts import config
+from Data_analysis_scripts.utils import split_group_cv, make_sure_folder_exists
+from Data_analysis_scripts import config
 matplotlib.use("PDF")
 num_cores = multiprocessing.cpu_count()
 '''
@@ -124,7 +124,7 @@ def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
         idx = np.argsort(importances_random)
         sorted_column_names = list(np.array(column_names)[idx])
 
-        importance_random = pandas.DataFrame({'Variables': sorted_column_names, 'Importance': importances_random[idx]})
+        importance_random = pd.DataFrame({'Variables': sorted_column_names, 'Importance': importances_random[idx]})
         target_file = "Importances_random_folds_Change/%s-%s" % (name, count)
         make_sure_folder_exists(target_file)
         importance_random.to_csv(target_file + ".csv", columns=['Variables', 'Importance'], sep=';', index=False)
@@ -160,7 +160,7 @@ def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
         idx = np.argsort(importances_drop)
         sorted_column_names = list(np.array(column_names)[idx])
 
-        importance_drop = pandas.DataFrame({'Variables': sorted_column_names, 'Importance': importances_drop[idx]})
+        importance_drop = pd.DataFrame({'Variables': sorted_column_names, 'Importance': importances_drop[idx]})
         target_file = "Importances_drop_folds_Change/%s-%s" % (name, count)
         make_sure_folder_exists(target_file)
         importance_drop.to_csv(target_file + ".csv", columns=['Variables', 'Importance'], sep=';', index=False)
@@ -171,7 +171,7 @@ def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
     mean_mae = np.mean(MAE)
     mean_r2 = np.mean(R2)
 
-    metrics_tosave = pandas.DataFrame(
+    metrics_tosave = pd.DataFrame(
         {'Regressor': name, 'MAE': np.mean(MAE), 'MAE_std': np.std(MAE),
          'R2': np.mean(R2), 'R2_std': np.std(R2)}, index=[0])
 
@@ -192,7 +192,7 @@ def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
     idx = np.argsort(importances_average_random)
     sorted_column_names = list(np.array(column_names)[idx])
 
-    importance_average_random = pandas.DataFrame(
+    importance_average_random = pd.DataFrame(
         {'Variables': sorted_column_names, 'Importance': importances_average_random[idx]})
     target_file = "Importances_random_Change/values/%s" % name
     make_sure_folder_exists(target_file)
@@ -224,7 +224,7 @@ def cross_validate_and_plot(clf, X, y, column_names, name, splits, df):
     idx = np.argsort(importances_average_drop)
     sorted_column_names = list(np.array(column_names)[idx])
 
-    importance_average_drop = pandas.DataFrame(
+    importance_average_drop = pd.DataFrame(
         {'Variables': sorted_column_names, 'Importance': importances_average_drop[idx]})
     target_file = "Importances_drop/values/%s" % name
     make_sure_folder_exists(target_file)

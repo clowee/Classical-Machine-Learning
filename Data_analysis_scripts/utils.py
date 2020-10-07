@@ -1,5 +1,5 @@
 import os
-import pandas
+import pandas as pd
 
 
 def split_group_cv(df, splits):
@@ -46,6 +46,6 @@ def create_groups_cv(raw_df, splits):
 
         allProjects_df.append(project_df)
     # concatenate all individual dataframes created into the final one
-    df = pandas.concat(allProjects_df).reset_index(drop=True)
+    df = pd.concat(allProjects_df).reset_index(drop=True)
 
     return df
