@@ -13,8 +13,8 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import r2_score
 
 
-from Classification_scripts.utils import split_group_cv, make_sure_folder_exists
-from Classification_scripts import config
+from Data_analysis_scripts.utils import split_group_cv, make_sure_folder_exists
+from Data_analysis_scripts import config
 matplotlib.use("PDF")
 num_cores = multiprocessing.cpu_count()
 '''

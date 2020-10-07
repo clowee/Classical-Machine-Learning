@@ -15,9 +15,9 @@ from sklearn.metrics import auc
 import time
 import pickle
 
-from Classification_scripts.utils import create_groups_cv
-from Classification_scripts.Classification_crossValidation import cross_validate_and_plot, classifiers
-from Classification_scripts import config
+from Data_analysis_scripts.utils import create_groups_cv
+from Data_analysis_scripts.Classification_crossValidation import cross_validate_and_plot, classifiers
+from Data_analysis_scripts import config
 
 matplotlib.use("PDF")
 ########################################################################################################################
@@ -51,10 +51,10 @@ if __name__ == "__main__":
     y = np.array(y)
 
     if config.analysisType == 'Classification':
-        from Classification_scripts.Classification_crossValidation import cross_validate_and_plot, classifiers
+        from Data_analysis_scripts.Classification_crossValidation import cross_validate_and_plot, classifiers
         model = classifiers()
     if config.analysisType == 'Regression':
-        from Classification_scripts.Regression_crossValidation import cross_validate_and_plot, regressors
+        from Data_analysis_scripts.Regression_crossValidation import cross_validate_and_plot, regressors
         model = regressors()
 
     # # Loop over each and cross-validate

@@ -289,7 +289,7 @@ if __name__ == "__main__":
                    (BaggingRegressor(n_estimators=100, n_jobs=-1, random_state=0), "Bagging"),
                    (AdaBoostRegressor(n_estimators=100, random_state=0), "AdaBoost")
         # ,
-                   # (XGBRegressor(n_estimators=100, n_jobs=-1, randomstate=0), "XGBoost")
+        #            (XGBRegressor(n_estimators=100, n_jobs=-1, randomstate=0), "XGBoost")
                    ]
 
 
